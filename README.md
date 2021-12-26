@@ -15,3 +15,7 @@ Input rate fully generated and processed by JS best option in case you don't nee
 1. You just need to have an HTML number input field within a any container
 
 4. required Font Awesome for stars
+
+
+# Try it Now
+https://spaces.w3schools.com/space/rate-js/editor
