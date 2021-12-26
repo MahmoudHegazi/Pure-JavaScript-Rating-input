@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<h1>Rate JS</h1>
+
+  <form>
+    <!-- this the input I target to add the rating with it -->
+    <div>
+    <input id="rate" type="number" min="0" max="5">
+    </div>
+  </form>
+  
+  <p id="demo"></p>
+  <script>
+  const displayer = document.querySelector("#demo");
+  const mirorInput = document.querySelector("#rate");
+  const starsIndexLimit = 4;
+  let lastOver = -1;
+  let isHovering = false;
+  let selectedRate = 0;
+  
+  
+function loadDefaultStars(status_class="fa-star-o"){
+   const rateInput = document.querySelector("#rate");
+   if (rateInput){
+     const starsParent = document.createElement("div");
+     const fragment = document.createDocumentFragment(); 
+     for (let i=0; i<5; i++){
+       const newStar = document.createElement("span");
+       newStar.classList.add("fa",status_class,"rate_star");
+       newStar.setAttribute("data-star", i);
+       newStar.setAttribute("data-checked", false);
+       newStar.addEventListener("click", starHandler);
+       newStar.addEventListener("mouseover", overHandler);       
+       fragment.appendChild(newStar);
+     }
+     starsParent.addEventListener("mouseleave", backDefault);
+     starsParent.appendChild(fragment);
+     rateInput.parentElement.parentElement.insertBefore(starsParent, rateInput.parentElement);
+   }
+}
+
+
+function starHandler(event){
+  const selectedStarIndex = event.target.getAttribute("data-star");
+  selectedRate = selectedStarIndex;
+  lastOver = selectedStarIndex;
+  displayer.innerHTML = Number(selectedRate)+1;
+  mirorInput.value = Number(selectedRate)+1;
+}
+
+function addTargetClassAndRemove(elm, targetClass, removed, checked){
+    if (elm.classList.contains(removed)){
+      elm.classList.remove(removed);
+    }
+    if (!elm.classList.contains(targetClass)){
+      elm.classList.add(targetClass);
+    }
+    elm.setAttribute("data-checked", checked);
+}
+
+function highlightOrDisableStarList(starList, targetClass, removed, checked){
+  starList.forEach( (star)=>{
+    addTargetClassAndRemove(star, targetClass, removed, checked);
+  });
+}
+
+
+function handleOverAddAndDudction(index){
+  const starList = Array.from(document.querySelectorAll(".rate_star"));
+  index = Number(index);
+  if (index == starsIndexLimit){
+    highlightOrDisableStarList(starList, "fa-star", "fa-star-o", true);
+  } else if (index < starsIndexLimit && index == 0){
+    highlightOrDisableStarList(starList.slice(1, starList.length), "fa-star-o", "fa-star", false);
+
+  } else if (index > 0 && index < starsIndexLimit){
+
+    highlightOrDisableStarList(starList.slice(0, index+1), "fa-star", "fa-star-o", true);
+    highlightOrDisableStarList(starList.slice(index+1, starList.length), "fa-star-o", "fa-star", false);
+  } else {
+        highlightOrDisableStarList(starList, "fa-star-o", "fa-star", false);
+  }
+}
+
+function backDefault(){
+   handleOverAddAndDudction(lastOver);
+}
+
+
+function overHandler(event){
+  const starIndex = event.target.getAttribute("data-star");
+  handleOverAddAndDudction(starIndex);
+}
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  let rateInputCheck = document.querySelector("#rate");
+  if (rateInputCheck){
+    loadDefaultStars();
+  }
+});
+  
+  
+  </script>
+
+</body>
+</html> 
