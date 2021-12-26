@@ -7,5 +7,11 @@ Input rate fully generated and processed by JS best option in case you don't nee
 
 ![rate_js](https://user-images.githubusercontent.com/55125302/147395924-97b71d7a-6ef5-4147-ac6a-e062fd0f33c2.JPG)
 
+# features:
+1. If you hover over any star, what is needed will be selected and only mouseover event will remain temporary, so when you leave the star it will be back as it was before you hovered over it and will not affect the input value.
+2. When you click on the star it will select the current rate and reflect it in the entry We can say you have a number entry but with rating display.
 
-1. required Font Awesome for stars
+# how to use it:
+1. You just need to have an HTML number input field with the id 'rate', that input field inside a container and that container inside a form
+
+4. required Font Awesome for stars
