@@ -16,9 +16,7 @@
     </div>
   </form>
   
-  <p id="demo"></p>
   <script>
-  const displayer = document.querySelector("#demo");
   const mirorInput = document.querySelector("#rate");
   const starsIndexLimit = 4;
   let lastOver = -1;
@@ -51,7 +49,6 @@ function starHandler(event){
   const selectedStarIndex = event.target.getAttribute("data-star");
   selectedRate = selectedStarIndex;
   lastOver = selectedStarIndex;
-  displayer.innerHTML = Number(selectedRate)+1;
   mirorInput.value = Number(selectedRate)+1;
 }
 
