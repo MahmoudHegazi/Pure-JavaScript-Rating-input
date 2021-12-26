@@ -12,6 +12,6 @@ Input rate fully generated and processed by JS best option in case you don't nee
 2. When you click on the star it will select the current rate and reflect it in the entry We can say you have a number entry but with rating display.
 
 # how to use it:
-1. You just need to have an HTML number input field with the id 'rate', that input field inside a container and that container inside a form
+1. You just need to have an HTML number input field within a any container
 
 4. required Font Awesome for stars
